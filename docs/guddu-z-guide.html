@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guddu Z: Project Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600..800&family=Newsreader:opsz,wght@6..72,400..700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--soft:#f6f1ff;--text:#241a4a;--mut:#6b5f99;--line:#e4daf8;--p:#6d28d9;--p2:#a78bfa;--code:#1e1038;--ok:#16a34a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#120c26;--soft:#1c1438;--text:#f1ecff;--mut:#b4a8dd;--line:#33265c;--p:#a78bfa;--p2:#7c3aed}}
+:root[data-theme="dark"]{--bg:#120c26;--soft:#1c1438;--text:#f1ecff;--mut:#b4a8dd;--line:#33265c;--p:#a78bfa;--p2:#7c3aed}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 20px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:18px/1.6 'Newsreader',Georgia,serif}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.2}
+#pb{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--p2),var(--p));z-index:30}
+.wrap{display:grid;grid-template-columns:290px minmax(0,1fr);max-width:1180px;margin:0 auto}
+aside{position:sticky;top:0;height:100vh;overflow:auto;padding:24px 18px;border-right:1px solid var(--line);background:var(--soft)}
+aside h1{font-size:24px;margin:0 0 4px;color:var(--p)}
+aside p{margin:0 0 12px;color:var(--mut);font-size:15px}
+#find{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font:inherit;font-size:16px}
+#toc{list-style:none;padding:0;margin:14px 0}
+#toc a{display:block;padding:6px 10px;border-left:3px solid transparent;color:var(--text);text-decoration:none;font-size:16px;border-radius:0 8px 8px 0}
+#toc a:hover{background:var(--bg)}
+#toc a.on{border-color:var(--p);color:var(--p);background:var(--bg);font-weight:600}
+.btns{display:flex;gap:6px;flex-wrap:wrap}
+button{font:600 14px 'Newsreader',Georgia,serif;border:1px solid var(--line);background:var(--bg);color:var(--text);padding:6px 10px;border-radius:8px;cursor:pointer}
+button:hover{border-color:var(--p)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--p);outline-offset:2px}
+main{padding:28px 32px 80px;min-width:0}
+.hero{padding:30px;border-radius:20px;background:linear-gradient(135deg,var(--p),#c084fc);color:#fff;margin-bottom:26px}
+.hero h1{margin:0 0 8px;font-size:clamp(30px,5vw,46px)}.hero p{margin:0;max-width:60ch;font-size:19px}
+.sec{margin:0 0 18px;border:1px solid var(--line);border-radius:16px;background:var(--bg)}
+.sec>details>summary{cursor:pointer;padding:14px 20px;list-style:none;display:flex;align-items:center;gap:10px}
+.sec>details>summary::-webkit-details-marker{display:none}
+.sec>details>summary::before{content:'+';color:var(--p);font:700 22px 'Fraunces',serif;width:18px}
+.sec>details[open]>summary::before{content:'\2212'}
+.sec h2{margin:0;font-size:25px}
+.body{padding:0 22px 20px}
+h3{font-size:19px;margin:20px 0 6px;color:var(--p)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:16px;margin:8px 0}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--soft);color:var(--p)}
+pre{position:relative;background:var(--code);color:#ede9fe;padding:14px;border-radius:12px;overflow-x:auto;font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:10px 0}
+pre button{position:absolute;top:6px;right:6px;font-size:12px;padding:3px 8px}
+.note,.warn{padding:10px 14px;border-radius:10px;margin:10px 0;font-size:16.5px}
+.note{background:var(--soft);border-left:4px solid var(--p)}
+.warn{background:rgba(245,158,11,.12);border-left:4px solid #f59e0b}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:var(--soft);padding:1px 6px;border-radius:5px}
+.bar{height:10px;background:var(--line);border-radius:6px;overflow:hidden;margin:8px 0}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p2),var(--p));transition:width .3s}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:7px 4px;border-bottom:1px dashed var(--line);cursor:pointer}
+.ck input{margin-top:7px;accent-color:#6d28d9;width:18px;height:18px}
+.ck.done span{text-decoration:line-through;color:var(--mut)}
+.ck b{min-width:74px;color:var(--p)}
+.tabs{display:flex;gap:6px;margin:8px 0}.tabs button.on{background:var(--p);color:#fff;border-color:var(--p)}
+.tp{display:none}.tp.on{display:block}
+#menu{display:none;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:40;background:var(--p);color:#fff;border:0;padding:12px 16px;border-radius:30px}
+@media (max-width:860px){.wrap{display:block}aside{position:fixed;inset:0 25% 0 0;height:auto;z-index:35;transform:translateX(-105%);transition:transform .25s;box-shadow:4px 0 24px rgba(0,0,0,.2)}aside.open{transform:none}#menu{display:block}main{padding:20px 14px 90px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="pb"></div>
+<div class="wrap">
+<aside id="side">
+<h1>Guddu Z</h1><p>Offline-first AI study assistant for Android</p>
+<input id="find" type="search" placeholder="Search this guide..." aria-label="Search this guide">
+<ul id="toc"></ul>
+<div class="btns"><button id="ex">Expand all</button><button id="co">Collapse all</button><button id="th">Theme</button></div>
+<p style="margin-top:14px">Roadmap progress: <b id="pp">0%</b></p><div class="bar"><i id="pf"></i></div>
+</aside>
+<main>
+<div class="hero"><h1>Guddu Z Project Guide</h1><p>Everything in one place: what we are building, how it works, which tools we use, and the order we build it in. Tick items in the roadmap and your progress is remembered on this device.</p></div>
+
+<section class="sec" id="overview"><details open><summary><h2>1. Project overview</h2></summary><div class="body">
+<h3>What</h3><p>An Android app that answers questions, solves maths, helps you study and reads photos. It works <b>offline first</b> and uses the internet only when it is available and you allow it.</p>
+<h3>Goals and non-goals</h3>
+<div class="tbl"><table><tr><th>Goal</th><th>Not a goal (for now)</th></tr>
+<tr><td>Private: your notes stay on your phone</td><td>Training our own model from scratch</td></tr>
+<tr><td>Works in airplane mode</td><td>Matching Google on live, up-to-date facts offline</td></tr>
+<tr><td>Honest: shows sources and confidence</td><td>iOS (later, maybe)</td></tr>
+<tr><td>Own brand: purple-pink-cyan cloud look, Guddu Z logo</td><td>Running a 7B+ model on a phone</td></tr></table></div>
+<div class="note"><b>Analogy:</b> the app is a small restaurant. The UI is the dining room, SQLite is the pantry, and the on-device AI is the chef. No food is delivered from outside, because everything is cooked locally.</div>
+</div></details></section>
+
+<section class="sec" id="terms"><details open><summary><h2>2. Key terms</h2></summary><div class="body">
+<div class="tbl"><table><tr><th>Term</th><th>Meaning in plain words</th></tr>
+<tr><td>SLM / LLM</td><td>A small (or large) language model: a program that predicts the next words, like very advanced autocomplete. SLMs are already trained; we do not train them.</td></tr>
+<tr><td>Quantization (Q4)</td><td>Storing the model's numbers with less precision so the file is smaller. Like saving a photo as a smaller JPEG: a little quality lost, a lot of space saved.</td></tr>
+<tr><td>.gguf</td><td>The file format used by llama.cpp for quantized models.</td></tr>
+<tr><td>Embedding</td><td>A list of numbers that represents the meaning of a text, so we can find "similar meaning" text.</td></tr>
+<tr><td>RAG</td><td>Retrieval-Augmented Generation: search the library first, then let the AI answer from what was found.</td></tr>
+<tr><td>Hallucination</td><td>The AI says something false in a confident tone.</td></tr>
+<tr><td>OCR</td><td>Reading text out of a photo.</td></tr>
+<tr><td>Dev Client</td><td>A custom build of your app that includes native AI libraries. Expo Go cannot run them.</td></tr>
+<tr><td>EAS Build</td><td>Expo's online build service. It builds the Android app in the cloud, so you do not need to install Android Studio just to build.</td></tr></table></div>
+</div></details></section>
+
+<section class="sec" id="arch"><details open><summary><h2>3. Architecture</h2></summary><div class="body">
+<p>One screen, one router, four tools, one small local model.</p>
+<pre>User input (text or photo)
+        |
+     ROUTER  (decides the type of question)
+        |
+ +------+-----------+--------------+
+ |      |           |              |
+Lookup  Maths      Study helper   Image
+(RAG)   (LLM +     (LLM + notes)  (OCR first)
+        mathjs)
+        |
+ Small local model (.gguf via llama.rn) writes the explanation
+        |
+ SQLite: notes, chat history, knowledge pack, embeddings</pre>
+<h3>Online / offline decision</h3>
+<pre>Question -> internet? no  -> offline pipeline
+                      yes -> needs fresh info? no  -> offline (private, free)
+                                               yes -> ask permission -> web search -> model summarizes -> show sources</pre>
+<ol><li>Offline is the default; online is an upgrade.</li><li>Always show a badge: <span class="mono">Offline</span> or <span class="mono">Online</span>.</li><li>Ask permission before anything leaves the phone.</li><li>If the connection drops, fall back to offline without crashing.</li></ol>
+</div></details></section>
+
+<section class="sec" id="stack"><details open><summary><h2>4. Tech stack</h2></summary><div class="body">
+<div class="tbl"><table><tr><th>Layer</th><th>Tool</th><th>Why</th></tr>
+<tr><td>App</td><td>Expo + React Native + TypeScript + Dev Client</td><td>Fast setup, allows native C++ AI libraries</td></tr>
+<tr><td>Cloud builds</td><td>EAS Build</td><td>Builds Android in the cloud</td></tr>
+<tr><td>Language model</td><td><span class="mono">llama.rn</span> with a 1B-3B Q4 .gguf</td><td>Runs llama.cpp on the phone</td></tr>
+<tr><td>Embeddings</td><td>MiniLM or BGE-small</td><td>Tiny and fast</td></tr>
+<tr><td>Database</td><td><span class="mono">op-sqlite</span> or <span class="mono">expo-sqlite</span> (+ <span class="mono">sqlite-vec</span>)</td><td>Notes, chats, vectors</td></tr>
+<tr><td>Maths</td><td><span class="mono">mathjs</span> (+ <span class="mono">nerdamer</span> for algebra)</td><td>Exact answers</td></tr>
+<tr><td>OCR</td><td>Google ML Kit text recognition via an RN wrapper</td><td>Offline photo-to-text</td></tr>
+<tr><td>Network</td><td><span class="mono">@react-native-community/netinfo</span></td><td>Online/offline status</td></tr>
+<tr><td>Files</td><td><span class="mono">expo-file-system</span></td><td>Model and pack downloads</td></tr>
+<tr><td>State</td><td>Zustand</td><td>Simple app state</td></tr>
+<tr><td>Voice (optional)</td><td><span class="mono">whisper.rn</span></td><td>Offline speech-to-text</td></tr></table></div>
+<div class="warn"><b>Verify before installing.</b> Package names and versions change quickly. Check each one on npm and its GitHub page, and check Hugging Face for newer small models, before you commit to them.</div>
+</div></details></section>
+
+<section class="sec" id="tiers"><details open><summary><h2>5. Android device tiers</h2></summary><div class="body">
+<p>Phones are like water tanks: a 4 GB phone cannot hold what a 12 GB phone can. The app reads the phone's RAM and recommends a tier.</p>
+<div class="tabs" id="tt"><button class="on" data-t="0">Lite</button><button data-t="1">Standard</button><button data-t="2">Plus</button></div>
+<div class="tp on"><b>Lite, about 4 GB RAM.</b> ~1B model at Q4 (roughly 0.7-1 GB file). Basic quality, slower. Use a short context size.</div>
+<div class="tp"><b>Standard, about 6-8 GB RAM.</b> 1B-3B at Q4. The main target for most users.</div>
+<div class="tp"><b>Plus, 8 GB+ RAM.</b> 3B-4B class at Q4. Best quality, more heat and battery use.</div>
+<div class="warn">These sizes are rough guides. Android and other apps use RAM too, so a 6 GB phone does not have 6 GB free. Speed differs a lot between chips. Measure on your own phone. Plan on CPU first; treat GPU as a bonus to test later.</div>
+</div></details></section>
+
+<section class="sec" id="features"><details open><summary><h2>6. Features in detail</h2></summary><div class="body">
+<h3>A) Google-like answers (RAG over a knowledge pack)</h3>
+<ol><li>User asks a question.</li><li>Embed it and find the 3-5 closest chunks in SQLite.</li><li>Prompt: "Answer using only this text."</li><li>Show the answer plus the source title.</li><li>If nothing matches, say "I couldn't find this" instead of guessing.</li></ol>
+<p>Chunks are about 200-400 words each. Offer downloadable packs (Science, History, General). Check real pack sizes and licences (for example Kiwix offline Wikipedia) before promising anything.</p>
+<h3>B) Maths solver (LLM explains, engine calculates)</h3>
+<p>Language models slip on arithmetic, so the exact answer always comes from <span class="mono">mathjs</span>.</p>
+<pre>Given:    2x + 6 = 14
+Required: value of x
+Method:   isolate x
+Steps:    2x = 14 - 6 = 8   ->   x = 8 / 2 = 4
+Answer:   x = 4
+Check:    2(4) + 6 = 14  (verified by the engine)</pre>
+<pre>import { evaluate } from 'mathjs';
+const x = evaluate('(14 - 6) / 2'); // 4, exact</pre>
+<p>If the model's answer and the engine disagree, show the engine's answer.</p>
+<h3>C) Study helper</h3>
+<p>Explain at a chosen level, summarize notes, make quizzes and flashcards. Use fixed prompt templates (Explain, Quiz, Summarize) so every answer has the same shape and is easy to revise.</p>
+<h3>D) Image input</h3>
+<div class="tbl"><table><tr><th>Need</th><th>Tool</th><th>Weight</th></tr>
+<tr><td>Read a printed question</td><td>OCR (ML Kit)</td><td>Light</td></tr>
+<tr><td>What object is this?</td><td>MobileNet or EfficientNet via ONNX Runtime / TFLite</td><td>Light</td></tr>
+<tr><td>Explain this diagram</td><td>Small vision-language model</td><td>Heavy</td></tr></table></div>
+<p>Build OCR then model first. Handwritten maths is hard, so let users edit the scanned text before solving.</p>
+</div></details></section>
+
+<section class="sec" id="conf"><details open><summary><h2>7. Confidence trace</h2></summary><div class="body">
+<p>Every answer shows a percentage, a colored bar and a "Why?" breakdown.</p>
+<div class="tbl"><table><tr><th>Signal</th><th>Where it comes from</th></tr>
+<tr><td>Library match</td><td>Embedding similarity between the question and the best chunk</td></tr>
+<tr><td>Matches source</td><td>A check that the answer stays within the retrieved text</td></tr>
+<tr><td>Model certainty</td><td>Token probabilities, if <span class="mono">llama.rn</span> exposes them (verify)</td></tr></table></div>
+<p><b>Starting formula (tune it by testing):</b> confidence = 0.4 x match + 0.3 x support + 0.3 x certainty</p>
+<p><b>Worked example:</b> 0.4 x 92 + 0.3 x 90 + 0.3 x 81 = 36.8 + 27 + 24.3 = 88.1, shown as 88% (High).</p>
+<p>Colors: green 75% and above, orange 40-74%, pink below 40%.</p>
+<div class="warn"><b>Common mistake:</b> treating the percentage as a guarantee. A small model can be confidently wrong, so low match always means "I don't know".</div>
+</div></details></section>
+
+<section class="sec" id="setup"><details open><summary><h2>8. Setup with EAS (online builds)</h2></summary><div class="body">
+<p>Commands are a starting point. Check the current Expo docs, because templates and flags change.</p>
+<h3>Step 1: create the project</h3>
+<pre>npx create-expo-app@latest guddu-z --template blank-typescript
+cd guddu-z
+npx expo install expo-dev-client</pre>
+<h3>Step 2: sign in and configure EAS</h3>
+<pre>npm install -g eas-cli
+eas login
+eas build:configure</pre>
+<h3>Step 3: development build for Android</h3>
+<p>In <span class="mono">eas.json</span>, the development profile needs the dev client turned on:</p>
+<pre>{
+  "build": {
+    "development": { "developmentClient": true, "distribution": "internal" },
+    "production": {}
+  }
+}</pre>
+<pre>eas build --profile development --platform android</pre>
+<p>Install the resulting APK on your phone, then run <span class="mono">npx expo start --dev-client</span> to load your code into it.</p>
+<div class="note">You must <b>rebuild</b> the dev client every time you add a library with native code (like <span class="mono">llama.rn</span>). Changing only JavaScript does not need a rebuild.</div>
+<h3>Step 4: phone preparation</h3>
+<p>Turn on Developer Options and USB debugging. Test on a real phone, never only on an emulator.</p>
+</div></details></section>
+
+<section class="sec" id="road"><details open><summary><h2>9. Roadmap (tick as you go)</h2></summary><div class="body">
+<p>Each phase must end with something working on a real phone before the next one starts.</p>
+<div id="rl"></div>
+<div class="note"><b>Make-or-break:</b> weeks 4-5. If the AI runs smoothly on your phone there, the rest is much easier.</div>
+</div></details></section>
+
+<section class="sec" id="repo"><details open><summary><h2>10. GitHub repository</h2></summary><div class="body">
+<pre>guddu-z/
+  README.md
+  .gitignore
+  .env.example
+  docs/guddu-z-guide.html
+  assets/brand/        logo master, icon, splash
+  src/
+    screens/  components/  ai/  db/  theme/  api/</pre>
+<h3>Create and push</h3>
+<pre>git init
+git add .
+git commit -m "Initial project scaffold"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/guddu-z.git
+git push -u origin main</pre>
+<p>Create the empty repo first on github.com (choose <b>Private</b> while you build), and do not tick "add README" there, since the scaffold already has one.</p>
+<div class="warn"><b>Never commit:</b> API keys, <span class="mono">.env</span> files or model files (.gguf). They are large and may be secret. The scaffold's <span class="mono">.gitignore</span> blocks them.</div>
+</div></details></section>
+
+<section class="sec" id="brand"><details open><summary><h2>11. Branding</h2></summary><div class="body">
+<div class="tbl"><table><tr><th>Item</th><th>Choice</th></tr>
+<tr><td>Name</td><td>Guddu Z</td></tr>
+<tr><td>Colors</td><td>Violet #8b5cf6, pink #ff4fa3, cyan #22d3ee, orange #ffb454, deep base #07021a</td></tr>
+<tr><td>Fonts</td><td>Fraunces (headings), Newsreader (body)</td></tr>
+<tr><td>Full logo</td><td>Splash screen, store listing, marketing</td></tr>
+<tr><td>Emblem only</td><td>App icon and header (the cracks blur at small sizes)</td></tr>
+<tr><td>Fallback</td><td>Plain Fraunces text where the stylized lettering is hard to read</td></tr></table></div>
+<p>Android assets: 1024x1024 icon, adaptive icon foreground and background layers, splash image, store screenshots. Test the icon at 48x48 px.</p>
+</div></details></section>
+
+<section class="sec" id="risks"><details open><summary><h2>12. Common mistakes and risks</h2></summary><div class="body">
+<div class="tbl"><table><tr><th>Mistake</th><th>Fix</th></tr>
+<tr><td>Model too big for the phone</td><td>Offer tiers and auto-recommend</td></tr>
+<tr><td>Trusting the model for arithmetic</td><td>Always verify with mathjs</td></tr>
+<tr><td>Promising "Google-level" answers offline</td><td>Say "answers from your offline library"</td></tr>
+<tr><td>Using Expo Go</td><td>Use a dev client built with EAS</td></tr>
+<tr><td>API keys inside the app</td><td>Use your own small backend as a middleman</td></tr>
+<tr><td>Model stays loaded in the background</td><td>Unload when the app is backgrounded</td></tr>
+<tr><td>Phone gets hot or drains battery</td><td>Cap tokens, add a cooldown</td></tr>
+<tr><td>Testing only on a good phone</td><td>Keep one budget phone as the worst case</td></tr>
+<tr><td>"Wi-Fi connected" assumed to mean "internet works"</td><td>Also handle failed requests</td></tr>
+<tr><td>Big model files inside the Play Store upload</td><td>Download after install (check Play Asset Delivery limits in Google's docs)</td></tr></table></div>
+</div></details></section>
+
+<section class="sec" id="rev"><details open><summary><h2>13. Quick revision summary</h2></summary><div class="body">
+<ul><li>SLMs are already trained: we add <b>prompts, a library and tools</b>, not training.</li>
+<li>Google-like offline = <b>RAG over a knowledge pack</b>, with sources.</li>
+<li>Maths = <b>model explains, mathjs calculates, code verifies</b>.</li>
+<li>Images = <b>OCR first</b>, classifier second, vision model last.</li>
+<li>Hybrid = <b>offline first, online boost</b>, with a badge and permission.</li>
+<li>Confidence = <b>match + source support + model certainty</b>.</li>
+<li>Builds = <b>EAS dev client</b>; rebuild after adding native libraries.</li>
+<li>Test on a <b>real, weak phone</b>; manage memory, battery and heat.</li></ul>
+</div></details></section>
+</main>
+</div>
+<button id="menu">Contents</button>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const secs=$$('.sec');
+secs.forEach(s=>{const li=document.createElement('li'),a=document.createElement('a');a.href='#'+s.id;a.textContent=s.querySelector('h2').textContent;a.onclick=()=>$('#side').classList.remove('open');li.appendChild(a);$('#toc').appendChild(li)});
+const links=$$('#toc a');
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-10% 0px -80% 0px'}).observe&&secs.forEach(s=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-10% 0px -80% 0px'}).observe(s));
+addEventListener('scroll',()=>{const h=document.documentElement;$('#pb').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'});
+$('#find').oninput=e=>{const q=e.target.value.toLowerCase();secs.forEach((s,i)=>{const m=!q||s.textContent.toLowerCase().includes(q);s.style.display=m?'':'none';links[i].parentElement.style.display=m?'':'none';if(q&&m)s.querySelector('details').open=true})};
+$('#ex').onclick=()=>secs.forEach(s=>s.querySelector('details').open=true);
+$('#co').onclick=()=>secs.forEach(s=>s.querySelector('details').open=false);
+$('#th').onclick=()=>{const d=document.documentElement,dark=getComputedStyle(d).getPropertyValue('--bg').trim()==='#120c26';d.dataset.theme=dark?'light':'dark'};
+$('#menu').onclick=()=>$('#side').classList.toggle('open');
+$$('pre').forEach(p=>{const b=document.createElement('button');b.textContent='Copy';b.onclick=()=>{const t=p.innerText.replace(/Copy$/,'').trim();(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>b.textContent='Copied',()=>b.textContent='Select + copy');setTimeout(()=>b.textContent='Copy',1500)};p.appendChild(b)});
+$$('#tt button').forEach((b,i)=>b.onclick=()=>{$$('#tt button').forEach(x=>x.classList.toggle('on',x===b));$$('.tp').forEach((t,j)=>t.classList.toggle('on',j===i))});
+const R=[['Week 1','Brand, Expo project, EAS dev client installed on your phone'],['Week 2','UI shell: Chat, Maths, Scan, Library, Settings screens'],['Week 3','Model download with progress, storage check, resume'],['Week 4','First local AI reply with llama.rn, streaming, stop button'],['Week 5','Stability: unload on background, token cap, device tiers'],['Week 6','Router and prompt templates (Explain, Quiz, Summarize)'],['Week 7','Maths hybrid with mathjs verification'],['Week 8','Study tools: notes, flashcards, quiz'],['Weeks 9-10','Embeddings, chunking, SQLite vector search'],['Weeks 11-13','Knowledge pack RAG with sources and "not found" behavior'],['Weeks 14-15','Online mode: NetInfo, permission, web search, badge, fallback'],['Weeks 16-17','Camera, OCR, editable text, send to maths or study'],['Week 18+','Optional: vision model, voice, polish'],['Last 3 weeks','Low-end phone testing, privacy policy, Play Store listing']];
+let st=[];try{st=JSON.parse(localStorage.getItem('gz-road')||'[]')}catch(e){}
+function upd(){const n=$$('#rl input:checked').length,p=Math.round(n/R.length*100);$('#pp').textContent=p+'%';$('#pf').style.width=p+'%';try{localStorage.setItem('gz-road',JSON.stringify($$('#rl input').map(i=>i.checked)))}catch(e){}}
+R.forEach((r,i)=>{const l=document.createElement('label');l.className='ck';l.innerHTML='<input type="checkbox"><b>'+r[0]+'</b><span>'+r[1]+'</span>';const c=l.querySelector('input');c.checked=!!st[i];l.classList.toggle('done',c.checked);c.onchange=()=>{l.classList.toggle('done',c.checked);upd()};$('#rl').appendChild(l)});upd();
+</script>
+</body>
+</html>
