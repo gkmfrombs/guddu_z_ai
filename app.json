@@ -6,6 +6,10 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
+    "backgroundColor": "#07021a",
+    "plugins": [
+      ["expo-build-properties", { "android": { "buildArchs": ["arm64-v8a"] } }]
+    ],
     "android": {
       "package": "com.gkmfrombs.gudduz",
       "adaptiveIcon": {
@@ -16,13 +20,7 @@
       },
       "predictiveBackGestureEnabled": false
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "1c0d1640-43fe-4f11-9e4b-a01f9a17130c"
-      }
-    }
+    "web": { "favicon": "./assets/favicon.png" },
+    "extra": { "eas": { "projectId": "1c0d1640-43fe-4f11-9e4b-a01f9a17130c" } }
   }
 }
